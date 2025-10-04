@@ -123,7 +123,7 @@ public final class AntiPopup extends JavaPlugin {
         if (config.isBlockChatReports()) {
             if (!config.isExperimentalMode()) {
                 PlayerListener playerListener = switch (serverManager.getVersion()) {
-                    case V_1_21_6, V_1_21_7, V_1_21_8, V_1_21_9 -> new PlayerListener(new PlayerInjector_v1_21_6());
+                    case V_1_21_6, V_1_21_7, V_1_21_8 -> new PlayerListener(new PlayerInjector_v1_21_6());
                     case V_1_21_5 -> new PlayerListener(new PlayerInjector_v1_21_5());
                     case V_1_21_4 -> new PlayerListener(new PlayerInjector_v1_21_4());
                     case V_1_21_2, V_1_21_3 -> new PlayerListener(new PlayerInjector_v1_21_2());
@@ -135,7 +135,7 @@ public final class AntiPopup extends JavaPlugin {
                     case V_1_19_4 -> new PlayerListener(new PlayerInjector_v1_19_4());
                     case V_1_19_3 -> new PlayerListener(new PlayerInjector_v1_19_3());
                     case V_1_19_1, V_1_19_2 -> new PlayerListener(new PlayerInjector_v1_19_2());
-                    default -> throw new IllegalStateException("No valid injector found for the server version!");
+                    default -> new PlayerListener(new PlayerInjector_v1_21_6());
                 };
 
                 pluginManager.registerEvents(playerListener, this);
